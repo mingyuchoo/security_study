@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace에 본 xml과 매핑될 매퍼 인터페이스를 입력한다. -->
+<mapper namespace="com.mgchoo.security2.home.mapper.HomeMapper">
+    
+    <!-- 결과맵에 대한 타입을 지정한다. entity 클래스를 넣어 속성과 컬럼을 매핑한다.  -->
+    <resultMap  id="HomeResultMap" type="com.mgchoo.security2.home.entity.Home">
+        <id     property="idx"        column="idx"/>
+        <result property="name"       column="name"/>
+        <result property="accessDate" column="access_date" />
+    </resultMap>
+    
+    <!-- 입력 쿼리를 작성한다. -->
+    <insert id="insert" parameterType="com.mgchoo.security2.home.entity.Home">
+    INSERT INTO home(name)
+    VALUES (#{name})
+    </insert>
+
+</mapper>

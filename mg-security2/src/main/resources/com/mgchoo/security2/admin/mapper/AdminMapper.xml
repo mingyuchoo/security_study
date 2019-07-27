@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mgchoo.security2.admin.mapper.AdminMapper">
+	<resultMap id="AdminResultMap" type="com.mgchoo.security2.admin.entity.Admin">
+		<id property="idx"               column="idx" />
+		<result property="subject"       column="subject" />
+		<result property="content"       column="content" />
+		<result property="sent_date"     column="sent_date" />
+		<result property="received_date" column="receieved_date" />
+		<result property="read_yn"       column="read_yn" />
+	</resultMap>
+
+	<select id="selectAll" resultMap="AdminResultMap">
+		SELECT *
+		  FROM message
+	</select>
+
+	<select id="selectOne" resultMap="AdminResultMap">
+		SELECT *
+		  FROM message
+		 WHERE idx = #{idx}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO message (subject, content, sent_date)
+		VALUES (#{subject}, #{content}, #{sent_date})
+	</insert>
+
+	<update id="update">
+		UPDATE message
+		   SET received_date = #{received_date}
+		 WHERE idx = #{idx}
+	</update>
+
+	<delete id="delete">
+		DELETE
+		  FROM message
+		 WHERE idx = #{idx}
+	</delete>
+
+</mapper>

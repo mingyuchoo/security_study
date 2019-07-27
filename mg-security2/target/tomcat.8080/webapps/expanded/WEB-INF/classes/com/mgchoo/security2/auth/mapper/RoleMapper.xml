@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace에 본 xml과 매핑될 매퍼 인터페이스를 입력한다. -->
+<mapper namespace="com.mgchoo.security2.auth.mapper.RoleMapper">
+    
+    <!-- 결과맵에 대한 타입을 지정한다. entity 클래스를 넣어 속성과 컬럼을 매핑한다.  -->
+    <resultMap id="RoleResultMap" type="com.mgchoo.security2.auth.entity.MyRole">
+        <id     property="id"    column="id"/>
+        <result property="name"  column="name" />
+    </resultMap>
+   
+    <select id="selectAllbyUser" resultMap="RoleResultMap">
+        SELECT c.name
+		  FROM users a
+		  JOIN role_members b ON a.id = b.members_id
+		  JOIN roles c ON b.roles_id = c.id
+		 WHERE a.username = #{username }
+    </select>
+
+</mapper>
