@@ -1,1 +1,1 @@
-# security_study
+# spring_security_study
